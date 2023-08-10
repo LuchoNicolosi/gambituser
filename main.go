@@ -18,13 +18,7 @@ func main() {
 func EjecutoLamda(ctx context.Context, event events.CognitoEventUserPoolsPostConfirmation) (events.CognitoEventUserPoolsPostConfirmation, error) {
 
 	awsgo.InicializoAws()
-
-	// if !ValidoParametros() {
-	// 	fmt.Println("Error en los parametros, debe enviar las credenciales")
-	// 	err := errors.New("Error en los parametros, debe enviar las credenciales")
-	// 	return event, err
-	// }
-
+	
 	var datos models.SignUp
 
 	for row, att := range event.Request.UserAttributes {
@@ -42,11 +36,5 @@ func EjecutoLamda(ctx context.Context, event events.CognitoEventUserPoolsPostCon
 	err := db.SignUp(datos)
 
 	return event, err
-
 }
 
-// func ValidoParametros() bool {
-// 	var traeParametro bool
-// 	_, traeParametro = os.LookupEnv("SecrectName")
-// 	return traeParametro
-// }
