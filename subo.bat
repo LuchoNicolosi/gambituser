@@ -1,5 +1,5 @@
 git add .
-git commit -m "Ultimo commit"
+git commit -m "Ultimo Commit"
 git push
 set GOOS=linux
 set GOARCH=amd64

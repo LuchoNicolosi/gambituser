@@ -18,7 +18,6 @@ func DbConnect() error {
 		return err
 	}
 
-	//Buena practica
 	err = Db.Ping()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -30,7 +29,6 @@ func DbConnect() error {
 }
 
 func ConnStr() string {
-	//La mejor practica es guardarlo en un SecretManager
 	dbUser := env.GetEnv("DB_USER", "default-user")
 	dbName := env.GetEnv("DB_NAME", "default-dbName")
 	dbPassword := env.GetEnv("DB_PASSWORD", "default-password")
