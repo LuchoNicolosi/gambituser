@@ -1,3 +1,5 @@
 .env
 *.env
 .subo.bat
+.main 
+.main.zip
