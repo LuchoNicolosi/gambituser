@@ -3,16 +3,17 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/luchonicolosi/gambituser/env"
 )
 
 var Db *sql.DB
+var err error
 
 func DbConnect() error {
 
-	Db, err := sql.Open("mysql", ConnStr())
+	Db, err = sql.Open("mysql", ConnStr())
 	if err != nil {
 		fmt.Println(err.Error())
 		return err
@@ -29,10 +30,11 @@ func DbConnect() error {
 }
 
 func ConnStr() string {
-	dbUser := env.GetEnv("DB_USER", "default-user")
-	dbName := env.GetEnv("DB_NAME", "default-dbName")
-	dbPassword := env.GetEnv("DB_PASSWORD", "default-password")
-	host := env.GetEnv("DB_HOST", "default-host")
+
+	dbUser := os.Getenv("DB_USER")
+	dbName := os.Getenv("DB_NAME")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	host := os.Getenv("DB_HOST")
 
 	url := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true", dbUser, dbPassword, host, dbName)
 	fmt.Println(url)

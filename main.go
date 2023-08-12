@@ -18,7 +18,7 @@ func main() {
 func EjecutoLamda(ctx context.Context, event events.CognitoEventUserPoolsPostConfirmation) (events.CognitoEventUserPoolsPostConfirmation, error) {
 
 	awsgo.InicializoAws()
-	
+
 	var datos models.SignUp
 
 	for row, att := range event.Request.UserAttributes {
@@ -37,4 +37,3 @@ func EjecutoLamda(ctx context.Context, event events.CognitoEventUserPoolsPostCon
 
 	return event, err
 }
-

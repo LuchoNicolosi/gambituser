@@ -17,13 +17,13 @@ func SignUp(data models.SignUp) error {
 
 	defer Db.Close()
 
-	INSERT_USER := "INSERT INTO users (User_Email,User_UUID, User_DateAdd) VALUES('" + data.UserEmail + "','" + data.UserUUID + "','" + tools.FechaMySQL() + "')"
-	
-	fmt.Println(INSERT_USER)
+	INSERT_USER := "INSERT INTO users (User_Email, User_UUID, User_DateAdd) VALUES ('" + data.UserEmail + "','" + data.UserUUID + "','" + tools.FechaMySQL() + "')"
 
+	fmt.Println(INSERT_USER)
+	
 	_, err = Db.Exec(INSERT_USER)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("Error en ejecutar la query: ", err.Error())
 		return err
 	}
 
